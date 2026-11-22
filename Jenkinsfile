@@ -3,14 +3,12 @@ pipeline {
     stages {
         stage("Code") {
             steps {
-                // Works when the job is "Pipeline script from SCM". For a plain pipeline job use:
-                // git url: "https://github.com/<username>/<repo>.git", branch: "main"
-                checkout scm
+                git url: "https://github.com/Sidgore799/dispatch-automation.git", branch: "master"
             }
         }
         stage("Build") {
             steps {
-                sh "docker compose build"
+                sh "docker build -t dispatch-app ."
             }
         }
         stage("Test") {

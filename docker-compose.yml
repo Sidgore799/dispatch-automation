@@ -1,0 +1,10 @@
+services:
+  dispatch-app:
+    build: .
+    image: dispatch-automation:latest
+    container_name: dispatch-automation
+    ports:
+      - "5000:5000"
+    environment:
+      - SECRET_KEY=change-me-in-jenkins
+    restart: unless-stopped

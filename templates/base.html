@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>{% block title %}{% endblock %} | Dispatch Automation</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body>
+<header class="top"><div class="brand">Dispatch Automation</div>
+<nav class="user"><a href="{{ url_for('profile') }}">Profile</a><a href="{{ url_for('logout') }}">Logout</a></nav></header>
+<div class="shell">
+<aside class="side">
+{% for ep, label in [('tracker','Case Tracker'),('view','View'),('create','Case Creation'),('policy','Policy Details')] %}
+<a href="{{ url_for(ep) }}" class="{{ 'on' if request.endpoint == ep }}">{{ label }}</a>
+{% endfor %}
+</aside>
+<main class="page"><h1>{% block heading %}{% endblock %}</h1>
+{% for m in get_flashed_messages() %}<p class="note">{{ m }}</p>{% endfor %}
+{% block body %}{% endblock %}</main>
+</div></body></html>

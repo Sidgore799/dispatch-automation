@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}View{% endblock %}
+{% block heading %}All Cases{% endblock %}
+{% block body %}
+<form class="search" method="get"><select name="status" onchange="this.form.submit()">
+<option value="">All stages</option>
+{% for s in stages %}<option {{ 'selected' if s == status }}>{{ s }}</option>{% endfor %}</select></form>
+<div class="scroll"><table>
+<tr><th>Case ID</th><th>Customer</th><th>Mobile</th><th>Product</th><th>Sum assured</th><th>Stage</th><th>Created</th></tr>
+{% for c in cases %}<tr><td>{{ c.id }}</td><td>{{ c.customer }}</td><td>{{ c.mobile }}</td><td>{{ c.product }}</td>
+<td>₹{{ "{:,}".format(c.sum_assured) }}</td><td>{{ stages[c.stage] }}</td><td>{{ c.created }}</td></tr>
+{% else %}<tr><td colspan="7">No cases at this stage.</td></tr>{% endfor %}
+</table></div>
+{% endblock %}

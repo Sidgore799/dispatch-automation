@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block title %}Case Tracker{% endblock %}
+{% block heading %}Case Tracker{% endblock %}
+{% block body %}
+<form class="search" method="get"><input name="q" value="{{ q }}" placeholder="Search by case ID or customer"><button>Search</button></form>
+{% for c in cases %}
+<section class="case">
+  <div class="case-head"><strong>{{ c.id }}</strong><span>{{ c.customer }}</span><span class="meta">{{ c.product }}</span><span class="badge">{{ stages[c.stage] }}</span></div>
+  <ol class="steps">{% for s in stages %}<li class="{{ 'done' if loop.index0 < c.stage else ('now' if loop.index0 == c.stage) }}">{{ s }}</li>{% endfor %}</ol>
+  {% if c.stage < stages|length - 1 %}
+  <form method="post" action="{{ url_for('advance', cid=c.id) }}"><button>Move to {{ stages[c.stage + 1] }}</button></form>
+  {% else %}<p class="meta">Policy delivered to the customer.</p>{% endif %}
+</section>
+{% else %}<p>No cases match your search.</p>{% endfor %}
+{% endblock %}

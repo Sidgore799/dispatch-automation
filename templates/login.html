@@ -1,0 +1,14 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign in | Dispatch Automation</title>
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}"></head>
+<body class="loginbg">
+<form class="login" method="post">
+<div class="login-head">Dispatch Automation</div>
+<div class="login-body">
+<p class="meta">Sign in to issue and track policies.</p>
+{% if error %}<p class="error">{{ error }}</p>{% endif %}
+<label>Username<input name="username" autofocus required></label>
+<label>Password<input name="password" type="password" required></label>
+<button>Sign in</button>
+</div></form></body></html>

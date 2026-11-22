@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Case Creation{% endblock %}
+{% block heading %}Create a Case{% endblock %}
+{% block body %}
+<form class="form" method="post">
+<label>Customer name<input name="customer" required></label>
+<label>Mobile number<input name="mobile" pattern="[0-9]{10}" title="10 digit mobile number" required></label>
+<label>Product<select name="product">{% for p in products %}<option>{{ p }}</option>{% endfor %}</select></label>
+<label>Sum assured (₹)<input name="sum_assured" type="number" min="1" required></label>
+<label>Annual premium (₹)<input name="premium" type="number" min="1" required></label>
+<label>Policy term (years)<input name="term" type="number" min="1" max="40" required></label>
+<button>Create case</button>
+</form>
+{% endblock %}

@@ -1,0 +1,7 @@
+{% extends "base.html" %}
+{% block title %}Profile{% endblock %}
+{% block heading %}Profile{% endblock %}
+{% block body %}
+<dl class="profile"><dt>Name</dt><dd>{{ user.name }}</dd><dt>Username</dt><dd>{{ user.username }}</dd>
+<dt>Role</dt><dd>{{ user.role }}</dd><dt>Cases in system</dt><dd>{{ total }}</dd></dl>
+{% endblock %}

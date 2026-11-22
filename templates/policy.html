@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Policy Details{% endblock %}
+{% block heading %}Policy Details{% endblock %}
+{% block body %}
+<div class="scroll"><table>
+<tr><th>Policy no.</th><th>Case ID</th><th>Customer</th><th>Product</th><th>Sum assured</th><th>Premium / year</th><th>Term</th><th>Dispatch status</th></tr>
+{% for c in cases %}<tr><td>{{ c.policy_no }}</td><td>{{ c.id }}</td><td>{{ c.customer }}</td><td>{{ c.product }}</td>
+<td>₹{{ "{:,}".format(c.sum_assured) }}</td><td>₹{{ "{:,}".format(c.premium) }}</td><td>{{ c.term }} yr</td><td>{{ stages[c.stage] }}</td></tr>
+{% else %}<tr><td colspan="8">No policies issued yet. Move a case to Policy issued in Case Tracker.</td></tr>{% endfor %}
+</table></div>
+{% endblock %}
